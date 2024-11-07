@@ -13,7 +13,7 @@ import numpy as np
 from py_utils.face_utils import lib
 from py_utils.vid_utils import proc_vid as pv
 import logging
-
+import yaml
 
 
 print('***********')
@@ -22,7 +22,7 @@ print('***********')
 # Parse config
 cfg_file = 'cfgs/res50.yml'
 with open(cfg_file, 'r') as f:
-    cfg = edict(yaml.load(f))
+    cfg = edict(yaml.load(f, Loader=yaml.FullLoader))
 sample_num = 10
 
 # Employ dlib to extract face area and landmark points
