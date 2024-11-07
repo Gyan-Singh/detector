@@ -5,7 +5,8 @@ https://arxiv.org/abs/1811.00656
 """
 import tensorflow as tf
 import os
-import tensorflow.contrib.slim as slim
+import tf_slim as slim
+
 pwd = os.path.dirname(__file__)
 
 class Solver(object):
