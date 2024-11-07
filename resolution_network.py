@@ -34,7 +34,8 @@ class ResoNet(object):
 
     def build(self):
         # Input
-        self.input = tf.placeholder(dtype=tf.float32, shape=[None, self.img_size[0], self.img_size[1], self.img_size[2]])
+        # self.input = tf.placeholder(dtype=tf.float32, shape=[None, self.img_size[0], self.img_size[1], self.img_size[2]])
+        self.input = tf.TensorSpec(shape=[None, self.img_size[0], self.img_size[1], self.img_size[2]], dtype=tf.float32)
         self.input_mean = tfutils.mean_value(self.input, self.img_mean)
         if self.base_net == 'vgg16':
             with slim.arg_scope(vgg.vgg_arg_scope()):
@@ -59,7 +60,8 @@ class ResoNet(object):
                 self.logits = net[:, 0, 0, :]
         else:
             raise ValueError('base network should be vgg16, res50, -101, -152...')
-        self.gt = tf.placeholder(dtype=tf.int32, shape=[None])
+        # self.gt = tf.placeholder(dtype=tf.int32, shape=[None])
+        self.gt = tf.TensorSpec(shape=[None], dtype=tf.float32)
         # self.var_list = tf.trainable_variables()
 
         if self.is_train:
